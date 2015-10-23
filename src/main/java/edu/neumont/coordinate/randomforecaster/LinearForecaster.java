@@ -1,4 +1,7 @@
-package edu.neumont.coordinate;
+package edu.neumont.coordinate.randomforecaster;
+
+import edu.neumont.coordinate.Coordinate;
+import edu.neumont.coordinate.Forecaster;
 
 public class LinearForecaster implements Forecaster {
 
