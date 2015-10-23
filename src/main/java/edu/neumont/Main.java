@@ -15,10 +15,15 @@ public class Main {
         int seed = 40628285;
         List<Random> rs = new ArrayList<>();
 
-        rs.add(new Random(seed));
+//        rs.add(new AnsiCLCG(seed));
+//        rs.add(new BorlandLCG(seed));
+//        rs.add(new BorlandLrandLCG(seed));
+//        rs.add(new C99LCG(seed));
+//        rs.add(new GlibcLCG(seed));
         rs.add(new JavaLCG(seed));
-        rs.add(new BorlandLCG(seed));
-        rs.add(new GlibcLCG(seed));
+//        rs.add(new MSLCG(seed));
+        rs.add(new Random(seed));
+//        rs.add(new NumericalRecipiesLCG(seed));
 
 
         for (int i = 0; i < 5; i++) {
@@ -26,6 +31,9 @@ public class Main {
             for (Random r : rs) {
                 int ii = r.nextInt();
                 System.out.println("" + ii + '\t' + Integer.toBinaryString(ii));
+
+                double dd = r.nextDouble();
+                System.out.println("" + dd + '\t' + Double.toHexString(dd));
             }
         }
 //        LinearForecaster forecaster = new LinearForecaster();

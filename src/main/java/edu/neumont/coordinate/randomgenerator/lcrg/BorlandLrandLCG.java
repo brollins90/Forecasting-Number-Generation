@@ -1,9 +1,9 @@
 package edu.neumont.coordinate.randomgenerator.lcrg;
 
-public class BorlandLCG extends LinearCongruentialRandomGenerator {
+public class BorlandLrandLCG extends LinearCongruentialRandomGenerator {
 
-    public BorlandLCG(long seed) {
-        super(seed, 30, 16);
+    public BorlandLrandLCG(long seed) {
+        super(seed, 30, 0);
         modulus = 4_294_967_295L; // 2**32
         multiplier = 22_695_477L;
         increment = 1L;

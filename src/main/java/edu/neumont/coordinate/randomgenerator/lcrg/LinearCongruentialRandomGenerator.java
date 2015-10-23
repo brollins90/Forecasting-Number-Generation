@@ -40,9 +40,6 @@ public abstract class LinearCongruentialRandomGenerator extends Random implement
         long tempLong = nextSeed;
         tempLong = tempLong & mask; // drops bits on the left
 
-        int rshift = rightBit;
-        tempLong = tempLong >> rshift; // drops bits on the right
-
-        return (int) tempLong;
+        return (int)(tempLong >>> ((leftBit + 1) - bits));
     }
 }
