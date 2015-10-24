@@ -7,6 +7,10 @@ import java.util.Random;
 
 public class JavaRandomGenerator extends Random implements Generator {
 
+    public JavaRandomGenerator(long seed) {
+        super(seed);
+    }
+
     public Coordinate getNextCoordinate() {
         return new Coordinate(nextInt(1000), nextInt(1000));
     }
