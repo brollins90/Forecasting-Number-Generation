@@ -8,7 +8,7 @@ public class NodeRepository extends HashSet<Node> {
 
         for (Node n : this) {
             if (n.getNumber() == lastSeen) {
-                System.out.println("returning existing node (" + lastSeen + ")");
+//                System.out.println("returning existing node (" + lastSeen + ")");
                 return n;
             }
         }

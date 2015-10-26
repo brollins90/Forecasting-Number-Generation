@@ -42,6 +42,10 @@ import java.awt.geom.*;
 
 import javax.swing.*;
 
+import edu.neumont.coordinate.Coordinate;
+import edu.neumont.coordinate.randomforecaster.BlakeForecaster;
+import edu.neumont.coordinate.randomforecaster.Node;
+import edu.neumont.coordinate.randomgenerator.LinearRandomGenerator;
 import org.jgraph.*;
 import org.jgraph.graph.*;
 
@@ -63,24 +67,15 @@ public class JGraphAdapterDemo
         extends JApplet
 {
 
+    LinearRandomGenerator generator;
+    BlakeForecaster forecaster;
 
     private static final long serialVersionUID = 3256444702936019250L;
     private static final Color DEFAULT_BG_COLOR = Color.decode("#FAFBFF");
     private static final Dimension DEFAULT_SIZE = new Dimension(530, 320);
 
+    private JGraphModelAdapter<Node, DefaultWeightedEdge> jgAdapter;
 
-
-    //
-    private JGraphModelAdapter<String, DefaultEdge> jgAdapter;
-
-
-
-    /**
-     * An alternative starting point for this demo, to also allow running this
-     * applet as an application.
-     *
-     * @param args ignored.
-     */
     public static void main(String [] args)
     {
         JGraphAdapterDemo applet = new JGraphAdapterDemo();
@@ -94,18 +89,18 @@ public class JGraphAdapterDemo
         frame.setVisible(true);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public void init()
     {
-        // create a JGraphT graph
-        ListenableGraph<String, DefaultEdge> g =
-                new ListenableDirectedMultigraph<String, DefaultEdge>(
-                        DefaultEdge.class);
+
+        generator = new LinearRandomGenerator(1);
+        forecaster = new BlakeForecaster();
+//        // create a JGraphT graph
+//        ListenableGraph<String, DefaultEdge> g =
+//                new ListenableDirectedMultigraph<String, DefaultEdge>(
+//                        DefaultEdge.class);
 
         // create a visualization using JGraph, via an adapter
-        jgAdapter = new JGraphModelAdapter<String, DefaultEdge>(g);
+        jgAdapter = new JGraphModelAdapter<Node, DefaultWeightedEdge>(forecaster.getGraph());
 
         JGraph jgraph = new JGraph(jgAdapter);
 
@@ -113,27 +108,36 @@ public class JGraphAdapterDemo
         getContentPane().add(jgraph);
         resize(DEFAULT_SIZE);
 
-        String v1 = "v1";
-        String v2 = "v2";
-        String v3 = "v3";
-        String v4 = "v4";
+
+
+        for (int i = 0; i < 5; i++) {
+            Coordinate coord = new Coordinate(generator.nextInt(),generator.nextInt());
+            forecaster.seePrevious(coord);
+        }
+//        String v1 = "v1";
+//        String v2 = "v2";
+//        String v3 = "v3";
+//        String v4 = "v4";
 
         // add some sample data (graph manipulated via JGraphT)
-        g.addVertex(v1);
-        g.addVertex(v2);
-        g.addVertex(v3);
-        g.addVertex(v4);
+//        g.addVertex(v1);
+//        g.addVertex(v2);
+//        g.addVertex(v3);
+//        g.addVertex(v4);
+//
+//        g.addEdge(v1, v2);
+//        g.addEdge(v2, v3);
+//        g.addEdge(v3, v1);
+//        g.addEdge(v4, v3);
 
-        g.addEdge(v1, v2);
-        g.addEdge(v2, v3);
-        g.addEdge(v3, v1);
-        g.addEdge(v4, v3);
-
+        for(Node n : forecaster.getGraph().vertexSet()) {
+            positionVertexAt(n, n.getNumber(),n.getNumber());
+        }
         // position vertices nicely within JGraph component
-        positionVertexAt(v1, 130, 40);
-        positionVertexAt(v2, 60, 200);
-        positionVertexAt(v3, 310, 230);
-        positionVertexAt(v4, 380, 70);
+//        positionVertexAt(v1, 130, 40);
+//        positionVertexAt(v2, 60, 200);
+//        positionVertexAt(v3, 310, 230);
+//        positionVertexAt(v4, 380, 70);
 
         // that's all there is to it!...
     }

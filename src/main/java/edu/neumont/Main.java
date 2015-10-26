@@ -43,7 +43,7 @@ public class Main {
 
 
 
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 50; i++) {
             Coordinate coord = new Coordinate(g.nextInt(),g.nextInt());
 
             forecaster.seePrevious(coord);
@@ -52,6 +52,8 @@ public class Main {
 //            System.out.println(coordinate + " " + predication);
 //            forecaster.seePrevious(coordinate);
         }
+
+
         System.out.println(forecaster);
     }
 }

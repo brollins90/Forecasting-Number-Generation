@@ -42,4 +42,23 @@ public class Node {
     public void addEdge(Edge newEdge){
         edgeList.add(newEdge);
     }
+
+    @Override
+    public String toString() {
+        return "" + number;
+    }
+
+    public double getEdgeCount(int number) {
+
+        int count = 0;
+
+        for(Edge e : edgeList) {
+            if (e.getDest().getNumber() == number) {
+                count++;
+            }
+        }
+
+        return count;
+
+    }
 }
