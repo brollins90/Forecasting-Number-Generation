@@ -39,7 +39,7 @@ public class MiddleSquareishRandomGenerator extends Random implements Generator 
         String number = seedString.substring(mid - 2, mid + 2);
         seed = Long.parseLong(number);
 
-        long next = seed % ((1 << bits) - 1);
+        long next = seed % ((1l << bits) - 1);
         return (int) next;
     }
 }
