@@ -8,9 +8,15 @@ import java.util.Random;
 public class LinearRandomGenerator extends Random implements Generator {
 
     private int next = 0;
+    private int jump;
 
     public LinearRandomGenerator(long seed) {
+        this(seed, 1);
+    }
+
+    public LinearRandomGenerator(long seed, int jump) {
         next = (int) seed;
+        this.jump = jump;
     }
 
 
@@ -20,7 +26,7 @@ public class LinearRandomGenerator extends Random implements Generator {
 
     @Override
     protected int next(int bits) {
-        next++;
+        next += jump;
 //        next%=(8);
         next%=((1 << bits) - 1);
         return next;

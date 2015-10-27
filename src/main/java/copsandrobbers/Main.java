@@ -2,6 +2,7 @@ package copsandrobbers;
 
 import copsandrobbers.forecast.GraphCountForecaster;
 import copsandrobbers.forecast.LinearForecaster;
+import copsandrobbers.forecast.LinearJumpForecaster;
 import copsandrobbers.generator.LinearRandomGenerator;
 import copsandrobbers.generator.MiddleSquareishRandomGenerator;
 import copsandrobbers.generator.lcgr.JavaLCG;
@@ -15,8 +16,8 @@ public class Main {
     public static void main(String[] args) {
 
         // Phase 1 - Linear Progression
-        Generator linearGenerator = new LinearRandomGenerator(5);
-        Forecaster linearForecaster = new LinearForecaster();
+        Generator linearGenerator = new LinearRandomGenerator(5, 5);
+        Forecaster linearForecaster = new LinearJumpForecaster();
         Coordinate linearCoord = linearGenerator.getNextCoordinate();
 
         System.out.println(linearCoord);

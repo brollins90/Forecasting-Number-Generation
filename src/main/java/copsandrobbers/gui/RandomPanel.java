@@ -2,7 +2,10 @@ package copsandrobbers.gui;
 
 import copsandrobbers.Coordinate;
 import copsandrobbers.Generator;
+import copsandrobbers.generator.LinearRandomGenerator;
+import copsandrobbers.generator.MiddleSquareishRandomGenerator;
 import copsandrobbers.generator.lcgr.AnsiCLCG;
+import copsandrobbers.generator.lcgr.JavaLCG;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +26,7 @@ public class RandomPanel extends JPanel {
     public RandomPanel(Generator generator) {
         setPreferredSize(new Dimension(WIDTH / 2, HEIGHT / 2));
 
-        int dots = 100000;
+        int dots = 100_000;
         this.generator = generator;
 
         coordinates = new Coordinate[dots];
@@ -58,7 +61,7 @@ public class RandomPanel extends JPanel {
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setDefaultLookAndFeelDecorated(true);
                 f.setResizable(false);
-                RandomPanel panel = new RandomPanel(new AnsiCLCG(5));
+                RandomPanel panel = new RandomPanel(new JavaLCG(5));
                 f.add(panel, BorderLayout.CENTER);
                 f.pack();
                 f.setVisible(true);
