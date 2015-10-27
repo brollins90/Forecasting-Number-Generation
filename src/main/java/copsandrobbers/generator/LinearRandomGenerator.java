@@ -21,8 +21,8 @@ public class LinearRandomGenerator extends Random implements Generator {
     @Override
     protected int next(int bits) {
         next++;
-        next%=(7);
-//        next%=((1 << bits) - 1);
+//        next%=(8);
+        next%=((1 << bits) - 1);
         return next;
     }
 }
