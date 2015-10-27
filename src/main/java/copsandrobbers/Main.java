@@ -4,6 +4,7 @@ import copsandrobbers.forecast.GraphCountForecaster;
 import copsandrobbers.forecast.LinearForecaster;
 import copsandrobbers.generator.LinearRandomGenerator;
 import copsandrobbers.generator.MiddleSquareishRandomGenerator;
+import copsandrobbers.generator.lcgr.JavaLCG;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,45 +14,53 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // Phase 1 - Linear Progression
-        Generator linearGenerator = new LinearRandomGenerator(5);
-        Forecaster linearForecaster = new LinearForecaster();
-        Coordinate linearCoord = linearGenerator.getNextCoordinate();
+//        // Phase 1 - Linear Progression
+//        Generator linearGenerator = new LinearRandomGenerator(5);
+//        Forecaster linearForecaster = new LinearForecaster();
+//        Coordinate linearCoord = linearGenerator.getNextCoordinate();
+//
+//        System.out.println(linearCoord);
+//        for (int i = 0; i < 30; i++) {
+//            linearForecaster.seePrevious(linearCoord);
+//            Coordinate prediction = linearForecaster.getNextPrediction();
+//            linearCoord = linearGenerator.getNextCoordinate();
+//
+//            String won = (linearCoord.getX() == prediction.getX() && linearCoord.getY() == prediction.getY())
+//                    ? "  WINNER" : "";
+//            System.out.println(linearCoord + " -->(" + prediction + ")" + won);
+//        }
 
-        System.out.println(linearCoord);
-        for (int i = 0; i < 30; i++) {
-            linearForecaster.seePrevious(linearCoord);
-            Coordinate prediction = linearForecaster.getNextPrediction();
-            linearCoord = linearGenerator.getNextCoordinate();
+//        // Phase 2 - Simple Pattern
+//        Generator simpleGenerator = new MiddleSquareishRandomGenerator(5);
+//        Forecaster simpleForecaster = new GraphCountForecaster();
+//        Coordinate simpleCoord = simpleGenerator.getNextCoordinate();
+//
+//        System.out.println(simpleCoord);
+//        for (int i = 0; i < 50; i++) {
+//            simpleForecaster.seePrevious(simpleCoord);
+//            Coordinate prediction = simpleForecaster.getNextPrediction();
+//            simpleCoord = simpleGenerator.getNextCoordinate();
+//
+//            String won = (simpleCoord.getX() == prediction.getX() && simpleCoord.getY() == prediction.getY())
+//                    ? "  WINNER" : "";
+//            System.out.println(simpleCoord + " -->(" + prediction + ")" + won);
+//        }
 
-            String won = (linearCoord.getX() == prediction.getX() && linearCoord.getY() == prediction.getY())
+        // Phase 3 - Complex Pattern
+        Generator complexGenerator = new JavaLCG(5);
+        Forecaster complexForecaster = new GraphCountForecaster();
+        Coordinate complexCoord = complexGenerator.getNextCoordinate();
+
+        System.out.println(complexCoord);
+        for (int i = 0; i < 50; i++) {
+            complexForecaster.seePrevious(complexCoord);
+            Coordinate prediction = complexForecaster.getNextPrediction();
+            complexCoord = complexGenerator.getNextCoordinate();
+
+            String won = (complexCoord.getX() == prediction.getX() && complexCoord.getY() == prediction.getY())
                     ? "  WINNER" : "";
-            System.out.println(linearCoord + " -->(" + prediction + ")" + won);
+            System.out.println(complexCoord + " -->(" + prediction + ")" + won);
         }
 
-
-//        Random g = new MiddleSquareishRandomGenerator(1);
-//        GraphCountForecaster forecaster = new GraphCountForecaster();
-//
-//
-//        Coordinate previous = new Coordinate(g.nextInt(), g.nextInt());
-//
-//        System.out.println(previous);
-//
-////        while (true) {
-//        for (int i = 0; i < 50; i++) {
-//            forecaster.seePrevious(previous);
-//            Coordinate prediction = forecaster.getNextPrediction();
-//            previous = new Coordinate(g.nextInt(), g.nextInt());
-//
-//            String won = (previous.getX() == prediction.getX() && previous.getY() == prediction.getY())
-//                    ? "  WINNER" : "";
-//            System.out.println(previous + " -->(" + prediction + ")" + won);
-//        }
-
-//        for (int i = 0; i < 10; i++) {
-//            System.out.println(forecaster.getNextPrediction(i));
-//        }
-//        System.out.println(forecaster);
     }
 }
