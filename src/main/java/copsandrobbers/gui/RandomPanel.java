@@ -1,9 +1,8 @@
-package edu.neumont.coordinate.gui;
+package copsandrobbers.gui;
 
-import edu.neumont.coordinate.Coordinate;
-import edu.neumont.coordinate.Generator;
-import edu.neumont.coordinate.randomgenerator.*;
-import edu.neumont.coordinate.randomgenerator.lcrg.*;
+import copsandrobbers.Coordinate;
+import copsandrobbers.Generator;
+import copsandrobbers.generator.lcgr.AnsiCLCG;
 
 import javax.swing.*;
 import java.awt.*;

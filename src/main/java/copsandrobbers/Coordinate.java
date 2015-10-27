@@ -1,4 +1,4 @@
-package edu.neumont.coordinate;
+package copsandrobbers;
 
 public class Coordinate {
 

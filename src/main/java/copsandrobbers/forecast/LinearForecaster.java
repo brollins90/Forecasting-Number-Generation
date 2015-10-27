@@ -1,7 +1,7 @@
-package edu.neumont.coordinate.randomforecaster;
+package copsandrobbers.forecast;
 
-import edu.neumont.coordinate.Coordinate;
-import edu.neumont.coordinate.Forecaster;
+import copsandrobbers.Coordinate;
+import copsandrobbers.Forecaster;
 
 public class LinearForecaster implements Forecaster {
 

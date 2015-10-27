@@ -1,4 +1,6 @@
-package edu.neumont.coordinate;
+package copsandrobbers;
+
+import copsandrobbers.Coordinate;
 
 public interface Generator {
 

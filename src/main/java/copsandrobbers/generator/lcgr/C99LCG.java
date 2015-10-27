@@ -1,4 +1,4 @@
-package edu.neumont.coordinate.randomgenerator.lcrg;
+package copsandrobbers.generator.lcgr;
 
 public class C99LCG extends LinearCongruentialRandomGenerator {
 

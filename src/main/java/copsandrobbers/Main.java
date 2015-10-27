@@ -1,10 +1,7 @@
-package edu.neumont;
+package copsandrobbers;
 
-import edu.neumont.coordinate.*;
-import edu.neumont.coordinate.randomforecaster.*;
-import edu.neumont.coordinate.randomgenerator.LinearRandomGenerator;
-import edu.neumont.coordinate.randomgenerator.MiddleSquareishRandomGenerator;
-import edu.neumont.coordinate.randomgenerator.lcrg.*;
+import copsandrobbers.forecast.GraphCountForecaster;
+import copsandrobbers.generator.MiddleSquareishRandomGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,22 +35,28 @@ public class Main {
 //                System.out.println("" + dd + '\t' + Double.toHexString(dd));
 //            }
 //        }
-        LinearRandomGenerator g = new LinearRandomGenerator(1);
-        BlakeForecaster forecaster = new BlakeForecaster();
+        Random g = new MiddleSquareishRandomGenerator(1);
+        GraphCountForecaster forecaster = new GraphCountForecaster();
 
 
+        Coordinate previous = new Coordinate(g.nextInt(), g.nextInt());
 
+        System.out.println(previous);
+
+//        while (true) {
         for (int i = 0; i < 50; i++) {
-            Coordinate coord = new Coordinate(g.nextInt(),g.nextInt());
+            forecaster.seePrevious(previous);
+            Coordinate prediction = forecaster.getNextPrediction();
+            previous = new Coordinate(g.nextInt(), g.nextInt());
 
-            forecaster.seePrevious(coord);
-//            Coordinate coordinate = generator.getNextCoordinate();
-//            Coordinate predication = forecaster.getNextPrediction();
-//            System.out.println(coordinate + " " + predication);
-//            forecaster.seePrevious(coordinate);
+            String won = (previous.getX() == prediction.getX() && previous.getY() == prediction.getY())
+                    ? "  WINNER" : "";
+            System.out.println(previous + " -->(" + prediction + ")" + won);
         }
 
-
-        System.out.println(forecaster);
+//        for (int i = 0; i < 10; i++) {
+//            System.out.println(forecaster.getNextPrediction(i));
+//        }
+//        System.out.println(forecaster);
     }
 }

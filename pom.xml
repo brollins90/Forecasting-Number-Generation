@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>edu.neumont</groupId>
-    <artifactId>csc370</artifactId>
+    <groupId>copsandrobbers</groupId>
+    <artifactId>copsandrobbers</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <dependencies>
@@ -28,7 +28,7 @@
     </dependencies>
 
     <build>
-        <finalName>Forecasting-Number-Generation</finalName>
+        <finalName>copsandrobbers</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -41,6 +41,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

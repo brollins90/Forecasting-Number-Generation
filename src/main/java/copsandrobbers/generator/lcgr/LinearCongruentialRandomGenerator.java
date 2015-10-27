@@ -1,7 +1,7 @@
-package edu.neumont.coordinate.randomgenerator.lcrg;
+package copsandrobbers.generator.lcgr;
 
-import edu.neumont.coordinate.Coordinate;
-import edu.neumont.coordinate.Generator;
+import copsandrobbers.Coordinate;
+import copsandrobbers.Generator;
 
 import java.util.Random;
 

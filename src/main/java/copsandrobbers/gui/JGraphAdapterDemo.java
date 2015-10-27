@@ -35,17 +35,16 @@
  * 07-Nov-2003 : Adaptation to JGraph 3.0 (BN);
  *
  */
-package edu.neumont.coordinate.gui;
+package copsandrobbers.gui;
 
 import java.awt.*;
 import java.awt.geom.*;
 
 import javax.swing.*;
 
-import edu.neumont.coordinate.Coordinate;
-import edu.neumont.coordinate.randomforecaster.BlakeForecaster;
-import edu.neumont.coordinate.randomforecaster.Node;
-import edu.neumont.coordinate.randomgenerator.LinearRandomGenerator;
+import copsandrobbers.Coordinate;
+import copsandrobbers.forecast.GraphCountForecaster;
+import copsandrobbers.generator.LinearRandomGenerator;
 import org.jgraph.*;
 import org.jgraph.graph.*;
 
@@ -54,7 +53,6 @@ import org.jgrapht.ext.*;
 import org.jgrapht.graph.*;
 
 // resolve ambiguity
-import org.jgrapht.graph.DefaultEdge;
 
 
 /**
@@ -68,13 +66,13 @@ public class JGraphAdapterDemo
 {
 
     LinearRandomGenerator generator;
-    BlakeForecaster forecaster;
+    GraphCountForecaster forecaster;
 
     private static final long serialVersionUID = 3256444702936019250L;
     private static final Color DEFAULT_BG_COLOR = Color.decode("#FAFBFF");
     private static final Dimension DEFAULT_SIZE = new Dimension(530, 320);
 
-    private JGraphModelAdapter<Node, DefaultWeightedEdge> jgAdapter;
+    private JGraphModelAdapter<Integer, DefaultWeightedEdge> jgAdapter;
 
     public static void main(String [] args)
     {
@@ -93,14 +91,14 @@ public class JGraphAdapterDemo
     {
 
         generator = new LinearRandomGenerator(1);
-        forecaster = new BlakeForecaster();
+        forecaster = new GraphCountForecaster();
 //        // create a JGraphT graph
 //        ListenableGraph<String, DefaultEdge> g =
 //                new ListenableDirectedMultigraph<String, DefaultEdge>(
 //                        DefaultEdge.class);
 
         // create a visualization using JGraph, via an adapter
-        jgAdapter = new JGraphModelAdapter<Node, DefaultWeightedEdge>(forecaster.getGraph());
+        jgAdapter = new JGraphModelAdapter<Integer, DefaultWeightedEdge>(forecaster.getGraph());
 
         JGraph jgraph = new JGraph(jgAdapter);
 
@@ -130,9 +128,9 @@ public class JGraphAdapterDemo
 //        g.addEdge(v3, v1);
 //        g.addEdge(v4, v3);
 
-        for(Node n : forecaster.getGraph().vertexSet()) {
-            positionVertexAt(n, n.getNumber(),n.getNumber());
-        }
+//        for(Integer n : forecaster.getGraph().vertexSet()) {
+//            positionVertexAt(n, n.getNumber(),n.getNumber());
+//        }
         // position vertices nicely within JGraph component
 //        positionVertexAt(v1, 130, 40);
 //        positionVertexAt(v2, 60, 200);
