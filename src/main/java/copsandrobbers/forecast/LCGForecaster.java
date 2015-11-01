@@ -7,6 +7,8 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+// http://www.reteam.org/papers/e59.pdf
+
 public class LCGForecaster implements Forecaster {
 
     private final int determinateOffset = 4;

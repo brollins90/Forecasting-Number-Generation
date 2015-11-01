@@ -45,15 +45,17 @@ public class Main {
 //        }
 
         // Phase 3 - Complex Pattern
-        Generator complexGenerator = new LCGenerator();
+        Generator complexGenerator = new LCGenerator(12345);
         Forecaster complexForecaster = new LCGForecaster();
-        Coordinate complexCoord = complexGenerator.getNextCoordinate();
+//        Coordinate complexCoord = complexGenerator.getNextCoordinate();
+        Coordinate complexCoord = complexGenerator.getNextCoordinate32Bits();
 
         System.out.println(complexCoord);
         for (int i = 0; i < 50; i++) {
             complexForecaster.seePrevious(complexCoord);
             Coordinate prediction = complexForecaster.getNextPrediction();
-            complexCoord = complexGenerator.getNextCoordinate();
+//            complexCoord = complexGenerator.getNextCoordinate();
+            complexCoord = complexGenerator.getNextCoordinate32Bits();
 
             String won = (complexCoord.getX() == prediction.getX() && complexCoord.getY() == prediction.getY())
                     ? "  WINNER" : "";
