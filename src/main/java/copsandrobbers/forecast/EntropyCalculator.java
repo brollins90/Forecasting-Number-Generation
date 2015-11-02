@@ -24,11 +24,11 @@ public class EntropyCalculator {
 			}
 		}
 		int N = freqs.values().stream().mapToInt(i -> i).sum();
-		double sum = freqs.values().stream().mapToDouble(i -> (i/N * log2(i/N))).sum();
+		double sum = freqs.values().stream().mapToDouble(i -> ((double)i/N * log2((double)i/N))).sum();
 		return sum;
 	}
 	
-	private static double log2(int n){
+	private static double log2(double n){
 		return Math.log(n)/Math.log(2);
 	}
 	private void populateRandoms(){
