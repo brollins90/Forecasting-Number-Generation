@@ -23,7 +23,9 @@ public class EntropyCalculator {
 				freqs.put(i, freqs.containsKey(i) ? freqs.get(i) + 1 : 1);
 			}
 		}
-		return freqs.values().stream().mapToDouble(i -> (i * log2(i))).sum();
+		int N = freqs.values().stream().mapToInt(i -> i).sum();
+		double sum = freqs.values().stream().mapToDouble(i -> (i/N * log2(i/N))).sum();
+		return sum;
 	}
 	
 	private static double log2(int n){
