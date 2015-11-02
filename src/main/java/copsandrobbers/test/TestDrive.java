@@ -13,7 +13,6 @@ public class TestDrive {
 		SecureRandom sr = new SecureRandom();
 		long seed = sr.nextLong();
 		HashMap<String, Generator> generators = new HashMap<>();
-		generators.put("Constant", new ConstantGenerator());
 		generators.put("Java", new JavaRandomGenerator(seed));
 		generators.put("ERG", new ExponentRandomGenerator(seed));
 		generators.put("LRG", new LinearRandomGenerator(seed));
