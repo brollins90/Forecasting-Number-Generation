@@ -4,7 +4,6 @@ import java.security.SecureRandom;
 import java.util.HashMap;
 
 import copsandrobbers.Generator;
-import copsandrobbers.forecast.EntropyCalculator;
 import copsandrobbers.generator.*;
 
 public class TestDrive {

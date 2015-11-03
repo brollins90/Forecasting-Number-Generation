@@ -1,4 +1,4 @@
-package copsandrobbers.forecast;
+package copsandrobbers.test;
 
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
