@@ -14,14 +14,15 @@ public class TestDrive {
 		long seed = sr.nextLong();
 		HashMap<String, Generator> generators = new HashMap<>();
 		generators.put("Java", new JavaRandomGenerator(seed));
-		generators.put("ERG", new ExponentRandomGenerator(seed));
-		generators.put("LRG", new LinearRandomGenerator(seed));
-		generators.put("MSRG", new MiddleSquareishRandomGenerator(seed));
-		generators.put("ORG", new OneRandomGenerator());
-		generators.put("TRG", new TimeRandomGenerator());
+		generators.put("Exponent", new ExponentRandomGenerator(seed));
+		generators.put("Linear", new LinearRandomGenerator(seed));
+		generators.put("Middle Squarish", new MiddleSquareishRandomGenerator(seed));
+		generators.put("One", new OneRandomGenerator());
+		generators.put("Time", new TimeRandomGenerator());
 		
 		for(String key : generators.keySet()){
 			System.out.println(key + ": " + new EntropyCalculator(generators.get(key)).getEntropy());
+			System.out.println(key + ": " + new EntropyCalculator(generators.get(key)).getIndexEntropy());
 		}
 	}
 
