@@ -1,6 +1,11 @@
 package copsandrobbers.forecast;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.util.HashMap;
+
+import javax.imageio.ImageIO;
 
 import copsandrobbers.Coordinate;
 import copsandrobbers.Generator;
@@ -8,7 +13,7 @@ import copsandrobbers.Generator;
 public class EntropyCalculator {
 	
 	private static final int MAX = 1000;
-	private int[][] randoms = new int[MAX][MAX];
+	private int[][] randoms;
 	private Generator gen;
 	
 	public EntropyCalculator(Generator gen){
@@ -41,11 +46,23 @@ public class EntropyCalculator {
 		}
 		return entropyTotal / randoms.length;
 	}
+	public BufferedImage makeImage() throws IOException{
+		populateRandoms();
+		byte[] bites = new byte[1000000];
+		int i = 0;
+		for(int[] row : randoms){
+			for(int n : row){
+				bites[i++] = (byte)(n % 256);
+			}
+		}
+		return ImageIO.read(new ByteArrayInputStream(bites));
+	}
 	
 	private static double log2(double n){
 		return Math.log(n)/Math.log(2);
 	}
 	private void populateRandoms(){
+		randoms = new int[MAX][MAX];
 		for(int i = 0; i < randoms.length; i++){
 			for(int j = 0; j < randoms[i].length; j++){
 				Coordinate coord = gen.getNextCoordinate();
