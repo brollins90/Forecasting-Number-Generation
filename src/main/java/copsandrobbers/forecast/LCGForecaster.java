@@ -110,7 +110,8 @@ public class LCGForecaster implements Forecaster {
                 tempGcd.add(i, tempGcd.get(i).gcd(tempGcd.get(i + 1)));
             }
         }
-        return factor(tempGcd.get(0));
+
+        return (tempGcd.get(0).compareTo(BigInteger.ZERO) == 0) ? BigInteger.ZERO : factor(tempGcd.get(0));
     }
 
     private BigInteger factor(BigInteger value) {

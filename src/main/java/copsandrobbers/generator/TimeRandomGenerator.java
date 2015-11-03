@@ -17,7 +17,8 @@ public class TimeRandomGenerator extends Random implements Generator {
     @Override
     protected int next(int bits) {
         long now = System.nanoTime();
-        long next = now % ((1 << bits) - 1);
+        long bitMask = ((1L << bits) - 1);
+        long next = now % bitMask;
         return (int) next;
     }
 }
