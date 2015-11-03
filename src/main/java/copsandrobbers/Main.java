@@ -3,7 +3,9 @@ package copsandrobbers;
 import copsandrobbers.forecast.GraphCountForecaster;
 import copsandrobbers.forecast.LinearForecaster;
 import copsandrobbers.forecast.LinearJumpForecaster;
+import copsandrobbers.forecast.SimpleRegressionForecaster;
 import copsandrobbers.generator.LinearRandomGenerator;
+import copsandrobbers.generator.LinearishRandomGenerator;
 import copsandrobbers.generator.MiddleSquareishRandomGenerator;
 import copsandrobbers.generator.lcgr.JavaLCG;
 
@@ -16,20 +18,26 @@ public class Main {
     public static void main(String[] args) {
 
         // Phase 1 - Linear Progression
-        Generator linearGenerator = new LinearRandomGenerator(5, 5);
-        Forecaster linearForecaster = new LinearJumpForecaster();
-        Coordinate linearCoord = linearGenerator.getNextCoordinate();
-
-        System.out.println(linearCoord);
-        for (int i = 0; i < 30; i++) {
-            linearForecaster.seePrevious(linearCoord);
-            Coordinate prediction = linearForecaster.getNextPrediction();
-            linearCoord = linearGenerator.getNextCoordinate();
-
-            String won = (linearCoord.getX() == prediction.getX() && linearCoord.getY() == prediction.getY())
-                    ? "  WINNER" : "";
-            System.out.println(linearCoord + " -->(" + prediction + ")" + won);
-        }
+//        Generator linearGenerator = new LinearishRandomGenerator(5, 3, 5);
+//        Forecaster linearForecaster = new LinearJumpForecaster();
+//        Coordinate linearCoord = linearGenerator.getNextCoordinate();
+//
+//        System.out.println(linearCoord);
+//        int numWon = 0;
+//        for (int i = 0; i < 30; i++) {
+//            linearForecaster.seePrevious(linearCoord);
+//            Coordinate prediction = linearForecaster.getNextPrediction();
+//            linearCoord = linearGenerator.getNextCoordinate();
+//
+//            String won = "";
+//            if(linearCoord.getX() == prediction.getX() && linearCoord.getY() == prediction.getY()) {
+//            	numWon++;
+//            	won = "  WINNER";
+//            }
+//           
+//            System.out.println(linearCoord + " -->(" + prediction + ")" + won);
+//        }
+//        System.out.println("Number won: " + numWon);
 
 //        // Phase 2 - Simple Pattern
 //        Generator simpleGenerator = new MiddleSquareishRandomGenerator(5);
