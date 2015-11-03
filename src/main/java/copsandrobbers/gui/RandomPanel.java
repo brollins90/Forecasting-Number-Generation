@@ -61,7 +61,7 @@ public class RandomPanel extends JPanel {
                 f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 f.setDefaultLookAndFeelDecorated(true);
                 f.setResizable(false);
-                RandomPanel panel = new RandomPanel(new JavaLCG(5));
+                RandomPanel panel = new RandomPanel(new MiddleSquareishRandomGenerator(5));
                 f.add(panel, BorderLayout.CENTER);
                 f.pack();
                 f.setVisible(true);

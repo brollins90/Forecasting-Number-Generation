@@ -8,9 +8,11 @@ import copsandrobbers.generator.LinearRandomGenerator;
 import copsandrobbers.generator.LinearishRandomGenerator;
 import copsandrobbers.generator.MiddleSquareishRandomGenerator;
 import copsandrobbers.generator.lcgr.JavaLCG;
+import copsandrobbers.forecast.LCGForecaster;
+import copsandrobbers.forecast.LinearForecaster2;
+import copsandrobbers.generator.ExponentRandomGenerator;
+import copsandrobbers.generator.lcgr.LCGenerator;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Main {
@@ -18,27 +20,20 @@ public class Main {
     public static void main(String[] args) {
 
         // Phase 1 - Linear Progression
-//        Generator linearGenerator = new LinearishRandomGenerator(5, 3, 5);
-//        Forecaster linearForecaster = new LinearJumpForecaster();
+//        Generator linearGenerator = new ExponentRandomGenerator(2, 3);
+//        Forecaster linearForecaster = new LinearForecaster2();
 //        Coordinate linearCoord = linearGenerator.getNextCoordinate();
 //
 //        System.out.println(linearCoord);
-//        int numWon = 0;
-//        for (int i = 0; i < 30; i++) {
+//        for (int i = 0; i < 20; i++) {
 //            linearForecaster.seePrevious(linearCoord);
 //            Coordinate prediction = linearForecaster.getNextPrediction();
 //            linearCoord = linearGenerator.getNextCoordinate();
 //
-//            String won = "";
-//            if(linearCoord.getX() == prediction.getX() && linearCoord.getY() == prediction.getY()) {
-//            	numWon++;
-//            	won = "  WINNER";
-//            }
-//           
+//            String won = (linearCoord.getX() == prediction.getX() && linearCoord.getY() == prediction.getY())
+//                    ? "  WINNER" : "";
 //            System.out.println(linearCoord + " -->(" + prediction + ")" + won);
 //        }
-//        System.out.println("Number won: " + numWon);
-
 //        // Phase 2 - Simple Pattern
 //        Generator simpleGenerator = new MiddleSquareishRandomGenerator(5);
 //        Forecaster simpleForecaster = new GraphCountForecaster();
@@ -55,21 +50,22 @@ public class Main {
 //            System.out.println(simpleCoord + " -->(" + prediction + ")" + won);
 //        }
 
-//        // Phase 3 - Complex Pattern
-//        Generator complexGenerator = new JavaLCG(5);
-//        Forecaster complexForecaster = new GraphCountForecaster();
+        // Phase 3 - Complex Pattern
+        Generator complexGenerator = new LCGenerator(12345);
+        Forecaster complexForecaster = new LCGForecaster();
 //        Coordinate complexCoord = complexGenerator.getNextCoordinate();
-//
-//        System.out.println(complexCoord);
-//        for (int i = 0; i < 50; i++) {
-//            complexForecaster.seePrevious(complexCoord);
-//            Coordinate prediction = complexForecaster.getNextPrediction();
-//            complexCoord = complexGenerator.getNextCoordinate();
-//
-//            String won = (complexCoord.getX() == prediction.getX() && complexCoord.getY() == prediction.getY())
-//                    ? "  WINNER" : "";
-//            System.out.println(complexCoord + " -->(" + prediction + ")" + won);
-//        }
+        Coordinate complexCoord = complexGenerator.getNextCoordinate32Bits();
 
+        System.out.println(complexCoord);
+        for (int i = 0; i < 50; i++) {
+            complexForecaster.seePrevious(complexCoord);
+            Coordinate prediction = complexForecaster.getNextPrediction();
+//            complexCoord = complexGenerator.getNextCoordinate();
+            complexCoord = complexGenerator.getNextCoordinate32Bits();
+
+            String won = (complexCoord.getX() == prediction.getX() && complexCoord.getY() == prediction.getY())
+                    ? "  WINNER" : "";
+            System.out.println(complexCoord + " -->(" + prediction + ")" + won);
+        }
     }
 }

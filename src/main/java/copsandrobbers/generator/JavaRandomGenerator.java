@@ -14,4 +14,7 @@ public class JavaRandomGenerator extends Random implements Generator {
     public Coordinate getNextCoordinate() {
         return new Coordinate(nextInt(1000), nextInt(1000));
     }
+    public Coordinate getNextCoordinate32Bits() {
+        return new Coordinate(nextInt(), nextInt());
+    }
 }
